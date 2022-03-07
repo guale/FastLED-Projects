@@ -1,0 +1,1 @@
+A simple FastLED program that cycles a string of addressible LEDs through all hues and a defined range of values independently.
