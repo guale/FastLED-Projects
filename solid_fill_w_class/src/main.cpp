@@ -7,8 +7,8 @@ CRGB leds[NUM_LEDS];
 
 const uint8_t BRIGHTNESS = 63; //Scaling factor for the brightness
 
-uint8_t blendRateHue = 50;  // How fast to blend hue.
-uint8_t blendRateVal = 33;  // How fast to blend value.
+const uint8_t BLEND_RATE_HUE = 50;  // How fast to blend hue.
+const uint8_t BLEND_RATE_VAL = 33;  // How fast to blend value.
 
 Color color;
 
@@ -26,7 +26,7 @@ void setup() {
 }
 
 void loop() {
-	EVERY_N_MILLISECONDS(blendRateHue) {
+	EVERY_N_MILLISECONDS(BLEND_RATE_HUE) {
 		static uint8_t k;
 		if (color.current.h == color.target.h) {
 			color.startH.h = color.current.h;
@@ -43,11 +43,11 @@ void loop() {
 	}
 
 	//Blends the value independently of the hue
-	EVERY_N_MILLISECONDS(blendRateVal) {
+	EVERY_N_MILLISECONDS(BLEND_RATE_VAL) {
 		static uint8_t k;
 		if (color.current.v == color.target.v) {
 			color.startV.v = color.current.v;
-			color.target.v = random(128, 255);
+			color.target.v = color.randomVal();
 			k = 0;
 			Serial.printf("New color.target val:\t %u\n", color.target.v);
 		}
