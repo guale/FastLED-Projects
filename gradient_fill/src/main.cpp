@@ -1,8 +1,18 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include "Color.h"
-#define NUM_LEDS 64
 #define DATA_PIN 14
+
+// Params for width and height
+const uint8_t kMatrixWidth = 8;
+const uint8_t kMatrixHeight = 16;
+
+// Param for different pixel layouts
+const bool    kMatrixSerpentineLayout = true;
+const bool    kMatrixVertical = false;
+
+#define NUM_LEDS (kMatrixWidth*kMatrixHeight)
+
 CRGB leds[NUM_LEDS];
 
 const uint8_t BRIGHTNESS = 63; //Scaling factor for the brightness
@@ -55,6 +65,6 @@ void loop() {
 		color.previous = color.start;
 	}
 
-		// fill_gradient(leds, NUM_LEDS, CHSV(0,255,255), CHSV(255,255,255), FORWARD_HUES);
-		// FastLED.show();
+	// fill_gradient(leds, NUM_LEDS, CHSV(0,255,255), CHSV(255,255,255), FORWARD_HUES);
+	// FastLED.show();
 }
